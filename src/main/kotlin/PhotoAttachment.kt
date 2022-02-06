@@ -1,12 +1,12 @@
 data class PhotoAttachment(
     val photo: Photo = Photo(
         id = 1,
-        album_id = 2,
-        owner_id = 3,
-        user_id = 4,
+        albumId = 2,
+        ownerId = 3,
+        userId = 4,
         text = "",
         date = 4,
-        null,
+        sizes = null,
         width = 34,
         height = 32
     ),

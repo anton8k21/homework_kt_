@@ -9,8 +9,8 @@ data class LinkAttachment(
         photo = null,
         product = null,
         button = null,
-        preview_page = "  ",
-        preview_url = ""
+        previewPage = "  ",
+        previewUrl = ""
     )
 ): Attachment(type = "Link") {
 }

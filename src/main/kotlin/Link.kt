@@ -8,7 +8,7 @@ val description: String,
 val photo: Objects?,
 val product: Objects?,
 val button: Objects?,
-val preview_page: String,
-val preview_url: String,
+val previewPage: String,
+val previewUrl: String,
 ) {
 }

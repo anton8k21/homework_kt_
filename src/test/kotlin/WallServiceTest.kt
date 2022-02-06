@@ -6,14 +6,14 @@ import java.util.*
 class WallServiceTest {
     val post4 = Post(
         id = 0,
-        owner_id = 2,
-        from_id = 2,
-        created_by = 3,
+        ownerId = 2,
+        fromId = 2,
+        createdBy = 3,
         date = 3,
         text = "wewe",
-        reply_owner_id = 4,
-        reply_post_id = 43,
-        friends_only = true,
+        replyOwnerId = 4,
+        replyPostId = 43,
+        friendsOnly = true,
         copyright = Copyright(
             id = 4,
             link = 3,
@@ -23,31 +23,46 @@ class WallServiceTest {
         comments = Comments(),
         likes = Likes(
             count = 3,
-            user_likes = true,
-            can_like = true,
-            can_publish = true
+            userLikes = true,
+            canLike = true,
+            canPublish = true
         ),
         Reposts(
             count = 4,
-            user_reposted = true
+            userReposted = true
         ),
         Views(count = 5),
-        post_type = "dffd",
-        signer_id = 3,
-        can_pin = true,
-        can_delete = true,
-        can_edit = true,
-        is_pinned = true,
-        marked_as_ads = true,
-        is_favorite = true,
+        attachments = null,
+        postType = "dffd",
+        signerId = 3,
+        canPin = true,
+        canDelete = true,
+        canEdit = true,
+        isPinned = true,
+        markedAsAds = true,
+        isFavorite = true,
         donut = Donut(
-            is_donut = true,
-            paid_duration = 4,
+            isDonut = true,
+            paidDuration = 4,
             Placeholder(),
-            can_publish_free_copy = true,
-            "ret"
+            canPublishFreeCopy = true,
+            editMode = "ret"
         ),
-        postponed_id = 4
+        postponedId = 4
+    )
+
+    val comment1 = Comment(
+        postId = 3,
+        id = 4,
+        fromId = 5,
+        date = 3,
+        text = " ",
+        donut = null,
+        replyToUser = 4,
+        replyToComment = 5,
+        attachments = null,
+        parentsStack = null,
+        thread = null
     )
 
 
@@ -66,9 +81,9 @@ class WallServiceTest {
     @Test
     fun update() {
         val wallService = WallService()
-        wallService.add(post4.copy(id = 0, can_delete = false,signer_id = 23,postponed_id = 99999))
-        wallService.add(post4.copy(id = 1, can_delete = false,signer_id = 232323,postponed_id = 991212999))
-        wallService.add(post4.copy(id = 2, can_delete = false,signer_id = 29999913,postponed_id = 9121219))
+        wallService.add(post4.copy(id = 0, canDelete = false,signerId = 23,postponedId = 99999))
+        wallService.add(post4.copy(id = 1, canDelete = false,signerId = 232323,postponedId = 991212999))
+        wallService.add(post4.copy(id = 2, canDelete = false,signerId = 29999913,postponedId = 9121219))
         val post5 = post4.copy(id = 5)
         val post3 = post4.copy(id = 1)
 
@@ -76,7 +91,23 @@ class WallServiceTest {
         assertTrue(resultTrue)
         val resultFalse = wallService.update(post5)
         assertFalse(resultFalse)
+    }
 
+    @Test(expected = PostNotFoundException :: class)
+    fun createComment(){
+        val wallService = WallService()
+        wallService.add(post4.copy(id = 0, canDelete = false,signerId = 23,postponedId = 99999))
+        wallService.createComment(comment1)
+    }
 
+    @Test
+    fun createCommentTrue(){
+        val wallService = WallService()
+        wallService.add(post4.copy(id = 0, canDelete = false,signerId = 23,postponedId = 99999))
+        wallService.add(post4.copy(id = 1, canDelete = false,signerId = 232323,postponedId = 991212999))
+        wallService.add(post4.copy(id = 2, canDelete = false,signerId = 29999913,postponedId = 9121219))
+
+        val result = wallService.createComment(comment1).postId
+        assertEquals(result, 0)
     }
 }

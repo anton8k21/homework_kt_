@@ -1,7 +1,7 @@
 data class Graffiti(
     val id: Int,
-val owner_id: Int,
-val photo_130: String,
-val photo_604: String
+val ownerId: Int,
+val photo130: String,
+val photo604: String
 ) {
 }

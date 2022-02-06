@@ -1,17 +1,17 @@
 data class NoteAttachment(
     val note: Note = Note(
-        4,
-        5,
-        " ",
-        "",
-        12,
-        3,
-        7,
-        "",
-        "",
-        "",
-        7,
-        ""
+        id = 4,
+        ownerId = 5,
+        title = " ",
+        text = "",
+        date = 12,
+        comments = 3,
+        readComments = 7,
+        viewUrl = "",
+        privacyView = "",
+        privacyComment = "",
+        canComment = 7,
+        textWiki = ""
     )
 ): Attachment(type = "Note") {
 }
