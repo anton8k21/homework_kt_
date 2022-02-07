@@ -52,7 +52,7 @@ class WallServiceTest {
     )
 
     val comment1 = Comment(
-        postId = 3,
+        postId = 2,
         id = 4,
         fromId = 5,
         date = 3,
@@ -108,6 +108,6 @@ class WallServiceTest {
         wallService.add(post4.copy(id = 2, canDelete = false,signerId = 29999913,postponedId = 9121219))
 
         val result = wallService.createComment(comment1).postId
-        assertEquals(result, 0)
+        assertEquals(result, 2)
     }
 }

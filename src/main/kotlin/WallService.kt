@@ -22,16 +22,12 @@ class WallService {
     }
 
     fun createComment(comment: Comment): Comment {
-        for (index in posts.indices){
-            if (posts[index].id == comment.postId){
+        for (index in posts.indices) {
+            if (posts[index].id == comment.postId) {
                 commentArray += comment
-                break
+                return comment
             }
         }
-        if (commentArray.last().postId !== comment.postId){
-            throw PostNotFoundException("не найден пост с аналогичным id")
-        }
-
-        return commentArray.last()
+        throw PostNotFoundException("не найден пост с id ${comment.postId}")
     }
 }
